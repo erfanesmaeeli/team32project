@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href={% static 'profile.css' %}>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <div class="container emp-profile col-10 mx-auto mt-4">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="https://icon-library.net/images/avatar-png-icon/avatar-png-icon-23.jpg" alt=""/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                <div class="mb-5 mt-4">
+                                    <h5 class="d-inline">first name: </h5>
+                                    <span id="text_first_name">
+                                        {{ request.user.first_name }}
+                                    </span>
+                                </div>
+
+                                <div class="mb-5">
+                                    <h5 class="d-inline">last name: </h5>
+                                    <span id="text_last_name">
+                                        {{ request.user.last_name }}
+                                    </span>
+                                </div>
+
+                                <div class="mb-5">
+                                    <h5 class="d-inline">username: </h5>
+                                    <span id="text_user_name">
+                                        {{ request.user.username }}
+                                    </span>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {% else%}
+        <div class="container mt-5">
+        <div class="alert alert-warning text-center" role="alert">
+            login first !!
+        </div>
+        </div>
+    {% endif %}
+
+    </body>
+</html>
+{% endblock %}

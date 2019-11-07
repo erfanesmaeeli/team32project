@@ -71,3 +71,7 @@ def logout_(request):
     logout(request)
     return HttpResponseRedirect("/")
     return render(request, "login.html")
+
+
+def profile(request):
+    return render(request, "profile.html")
