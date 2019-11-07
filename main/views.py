@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -22,6 +23,7 @@ def signup(request):
         return HttpResponseRedirect("/")
     return render(request, "signup.html")
 
+
 def contact(request):
     if request.method == 'POST':
         title = request.POST.get("title")
@@ -32,4 +34,22 @@ def contact(request):
 
 
 def login_(request):
+    error = False
+    if request.method == 'POST':
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect("/")
+        elif user is None:
+            error = True
+    return render(request, "login.html", {
+        "error": error
+    })
+
+
+def logout_(request):
+    logout(request)
+    return HttpResponseRedirect("/")
     return render(request, "login.html")

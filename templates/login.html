@@ -32,8 +32,20 @@
 </head>
 <body>
 {% block content %}
+
 <div class="limiter">
+
 		<div class="container-login100">
+<div class="container">
+        {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Oh Sheet!!</strong> Your username or password is incorrect!
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    {% endif %}
+    </div>
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(/static/images/bg-01.jpg);">
 					<span class="login100-form-title-1">

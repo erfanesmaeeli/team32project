@@ -23,15 +23,23 @@
           <li class="nav-item active">
             <a class="nav-link" id="homepage" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="login" href="/login/">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="register" href="/signup/">Register</a>
-          </li>
-            <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" id="contact_us" href="/contact/">Contact Us</a>
           </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+            <a class="nav-link" id="logout" href="/logout/">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" id="login" href="/login/">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="register" href="/signup/">Register</a>
+                </li>
+            {% endif %}
+
+
         </ul>
       </div>
     </div>
