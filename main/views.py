@@ -21,3 +21,11 @@ def signup(request):
 
         return HttpResponseRedirect("/")
     return render(request, "signup.html")
+
+def contact(request):
+    if request.method == 'POST':
+        title = request.POST.get("title")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
+        return render(request, "contact-done.html")
+    return render(request, "contact.html")
