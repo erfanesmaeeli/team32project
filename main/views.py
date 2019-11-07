@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
@@ -9,6 +10,8 @@ def home(request):
 
 
 def signup(request):
+    error_pass = False
+    error_user = False
     if request.method == 'POST':
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
@@ -16,6 +19,14 @@ def signup(request):
         email = request.POST.get("email")
         password = request.POST.get("password1")
         password_repeat = request.POST.get("password2")
+        if password != password_repeat :
+            error_pass = True
+            return render(request, "signup.html", {"error_pass": error_pass})
+
+        if User.objects.filter(username=username).exists() :
+            error_user = True
+            return render(request, "signup.html", {"error_user": error_user})
+
         user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email)
         user.set_password(password)
         user.save()
@@ -27,8 +38,15 @@ def signup(request):
 def contact(request):
     if request.method == 'POST':
         title = request.POST.get("title")
-        last_name = request.POST.get("last_name")
+        text = request.POST.get("text")
         email = request.POST.get("email")
+        my_email = EmailMessage(
+                title,
+                f"{text}  {email}",
+                'ES Band Webelopers' + '<webelopers.esband@gmail.com>',
+                ["erfan.es00749@gmail.com"],
+            )
+        my_email.send()
         return render(request, "contact-done.html")
     return render(request, "contact.html")
 
