@@ -29,3 +29,7 @@ def contact(request):
         email = request.POST.get("email")
         return render(request, "contact-done.html")
     return render(request, "contact.html")
+
+
+def login_(request):
+    return render(request, "login.html")
