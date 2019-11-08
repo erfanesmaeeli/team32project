@@ -63,6 +63,7 @@
     <div class="row">
         {% for course in courses %}
         <div class="col-md-6 mb-3 {{course.course_number}}_{{course.group_number}}" dir="rtl">
+            <a href="/add/{{ course.id }}">add</a>
             <div class="card bg-light mb-3">
                 <div class="card-header text-center">
                     <h4>{{ course.name }}</h4>
@@ -97,6 +98,45 @@
         {% endfor %}
     </div>
 </div>
+
+    <div class="my_courses">
+    {% for courses in user_course %}
+        <div class="col-md-6 mb-3 {{course.course_number}}_{{course.group_number}}" dir="rtl">
+
+            <div class="card bg-light mb-3">
+                <div class="card-header text-center">
+                    <h4>{{ course.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
+                        <i class="fa fa-home"></i>
+                        {{course.department}}
+                    </div>
+
+                    <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
+                        <i class="fa fa-calendar"></i>
+
+                        {{course.first_day}} و {{ course.second_day }}
+                    </div>
+
+                    <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
+                        <i class="fa fa-clock-o"></i>
+                        {% if course.first_day == 0 %}
+
+                        {% endif %}
+                        {{course.end_time}} تا {{ course.start_time }}
+                    </div>
+
+                    <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
+                        <i class="fa fa-user-secret"></i>
+                        {{course.teacher}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    </div>
 {% else %}
 <div class="container mt-5">
     <div class="alert alert-warning text-center" role="alert">

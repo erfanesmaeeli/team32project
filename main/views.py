@@ -4,7 +4,7 @@ from django.core.mail import EmailMessage
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from main.models import Course
+from main.models import Course, UserCourse
 import time
 from datetime import datetime
 
@@ -144,6 +144,7 @@ def new_course(request):
 
 
 def courses(request):
+    user_course = [c.course for c in UserCourse.objects.all()]
     courses = Course.objects.all()
     if request.method == "POST":
         query = request.POST.get("search_query")
@@ -161,4 +162,8 @@ def courses(request):
             else:
                 search_list = Course.objects.filter(Q(department__icontains=query))
             return render(request, "courses.html", {"search_list": search_list })
-    return render(request, "courses.html" , {"courses": courses})
+    return render(request, "courses.html" , {"courses": courses , "user_course": user_course})
+
+
+def add(request, pk):
+    request.user.usercourse_set.create(course__id=pk)
