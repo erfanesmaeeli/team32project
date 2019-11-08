@@ -86,8 +86,10 @@ def profile_edit(request):
 
         if first_name != "":
             request.user.first_name = first_name
+            request.user.save()
         if last_name != "":
             request.user.last_name = last_name
+            request.user.save()
         return render(request, "profile.html")
     return render(request, "profile-edit.html")
 
