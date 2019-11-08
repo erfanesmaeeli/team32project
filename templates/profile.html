@@ -9,7 +9,6 @@
 {% block content %}
     {% if user.is_authenticated %}
     <div class="container emp-profile col-10 mx-auto mt-4">
-            <form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -48,7 +47,6 @@
                         <a id="setting" href="/profile-edit/" class="btn btn-warning">Edit Profile</a>
                     </div>
                 </div>
-            </form>
         </div>
         {% else%}
         <div class="container mt-5">
