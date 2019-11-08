@@ -128,3 +128,5 @@ EMAIL_HOST_PASSWORD = 'wecandoit'
 EMAIL_HOST_USER = 'webelopers.esband@gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+MEDIA_URL = '/media/'

@@ -72,7 +72,6 @@ def login_(request):
 def logout_(request):
     logout(request)
     return HttpResponseRedirect("/")
-    return render(request, "login.html")
 
 
 def profile(request):
@@ -83,12 +82,16 @@ def profile_edit(request):
     if request.method == 'POST':
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
+        image = request.FILES.get("profile_image")
 
         if first_name != "":
             request.user.first_name = first_name
             request.user.save()
         if last_name != "":
             request.user.last_name = last_name
+            request.user.save()
+        if image:
+            request.user.profile.image = image
             request.user.save()
         return render(request, "profile.html")
     return render(request, "profile-edit.html")

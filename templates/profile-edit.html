@@ -42,7 +42,7 @@
 					</span>
 				</div>
 
-				<form class="login100-form validate-form" id="setting_form" action="/profile-edit/" method="post">
+				<form class="login100-form validate-form" id="setting_form" action="/profile-edit/" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
 					<div class="wrap-input100  m-b-26">
 						<span class="label-input100">First name</span>
@@ -53,6 +53,12 @@
                    <div class="wrap-input100  m-b-26">
 						<span class="label-input100">Last name</span>
 						<input name="last_name" class="input100" type="text" placeholder="Enter last name">
+						<span class="focus-input100"></span>
+					</div>
+
+                    <div class="wrap-input100  m-b-26">
+						<span class="label-input100">Image</span>
+						<input name="profile_image" class="input100" type="file" placeholder="Choose a picture">
 						<span class="focus-input100"></span>
 					</div>
 
