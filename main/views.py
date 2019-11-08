@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from main.models import Course
@@ -138,5 +139,6 @@ def courses(request):
     courses = Course.objects.all()
     query = request.GET.get("search_query")
     if query:
-        hassan = Course.objects.filter(Q(group_number__icontains=query))
-    return render(request, "courses.html", {"courses": courses})
+        search_list = Course.objects.filter(Q(department__icontains=query))
+        return render(request, "courses.html", {"search_list": search_list })
+    return render(request, "courses.html" , {"courses": courses})

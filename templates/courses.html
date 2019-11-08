@@ -12,8 +12,8 @@
 
     <!----- Search Daneshkade --->
 
-    <div class="col-md-4">
-        <form action="" method="GET" id="search-form" dir="rtl" class="my-2">
+    <div class="col-md-4 mx-auto mb-5">
+        <form action="" method="GET" id="search_form" dir="rtl" class="my-2">
             <div class="input-group">
                 <input type="text" class="form-control" name="search_query" placeholder="جست و جو در دانشکده"
                        value="{{ request.GET.search_query }}">
@@ -23,21 +23,31 @@
             </div>
         </form>
     </div>
-
-    {% for post in hasan %}
-
-    <span class="meta">Posted on: {{ post.name}}</span>
+{% if search_list %}
 
 
-{% endfor %}
+    <div id="search_result" dir="rtl" class="bg-light card p-3 mt-4 mb-4">
+    <h5 class="mb-4 text-primary text-center">
+        <i class="fa fa-search"></i>
+        نتایج جست و جو</h5>
+    {% for post in search_list %}
+        <div class="{{ post.course_number }}_{{ post.group_number }}"></div>
+        <h6 class="meta mb-3"><i class="fa fa-sticky-note text-dark"></i>
+ درس:
+            {{ post.name }}</h6>
+        <h6 class="meta"><i class="fa fa-user-secret text-dark"></i>
+ استاد:
+            {{ post.teacher }}</h6>
+        <hr class="w-100 bg-dark">
+    {% endfor %}
+    </div>
+    {% endif %}
 
 
     <!----- End Search Daneshkade --->
     <div class="row">
-
-
         {% for course in courses %}
-        <div class="col-md-6 mb-5 {{course.course_number}}_{{course.group_number}}" dir="rtl">
+        <div class="col-md-6 mb-3 {{course.course_number}}_{{course.group_number}}" dir="rtl">
             <div class="card bg-light mb-3">
                 <div class="card-header text-center">
                     <h4>{{ course.name }}</h4>
