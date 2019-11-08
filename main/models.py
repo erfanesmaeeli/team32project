@@ -23,6 +23,7 @@ class Course(models.Model):
     end_time = models.CharField(max_length=120)
     first_day = models.IntegerField(choices=DAY_CHOICES)
     second_day = models.IntegerField(choices=DAY_CHOICES)
+    exam_date = models.CharField(max_length=120)
 
     def __str__(self):
         return self.name

@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from main.models import Course
 import time
+from datetime import datetime
 
 
 def home(request):
@@ -114,6 +115,7 @@ def new_course(request):
         end_time = request.POST.get("end_time")
         first_day = request.POST.get("first_day")
         second_day = request.POST.get("second_day")
+        exam_date = request.POST.get("exam_date")
 
         try:
             time.strptime(start_time, '%H:%M')
@@ -126,8 +128,15 @@ def new_course(request):
         except ValueError:
             error_time = True
             return render(request, "new-course.html", {"error_time": error_time})
+        try:
+            datetime.strptime(exam_date, '%Y-%m-%d')
+        except ValueError:
+            error_time = True
+            return render(request, "new-course.html", {"error_time": error_time})
 
-        course = Course(department=department, name=name, course_number=course_number, group_number=group_number, teacher=teacher, start_time=start_time, end_time=end_time, first_day=first_day, second_day=second_day)
+        course = Course(department=department, name=name, course_number=course_number, group_number=group_number,
+                        teacher=teacher, start_time=start_time, end_time=end_time, exam_date=exam_date,
+                        first_day=first_day, second_day=second_day)
         course.save()
         return render(request, "panel.html")
 
