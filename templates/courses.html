@@ -13,23 +13,23 @@
     <!----- Search Daneshkade --->
 
     <div class="col-md-4 mx-auto mb-5">
-        <form action="/courses/" method="GET" id="search_form" dir="rtl" class="my-2">
+        <form action="/courses/" method="POST" id="search_form" dir="rtl" class="my-2">
+            {% csrf_token %}
             <div class="form-group">
-                <input type="text" class="form-control" name="search_query" placeholder="جست و جو در دانشکده"
-                       value="{{ request.GET.search_query }}">
+                <input type="text" class="form-control" name="search_query" placeholder="جست و جو در دانشکده">
             </div>
             <div class="bg-light pt-2 pb-1 pr-3 pl-3 rounded mb-3">
                 <div class="form-group form-check">
-                    <input value="{{ request.GET.department }}" name="department" type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <input  name="department" type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label text-dark mr-4" for="exampleCheck1">بر اساس دانشکده</label>
                 </div>
                 <div class="form-group form-check">
-                    <input value="{{ request.GET.teacher }}" name="teacher" type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <input name="teacher" type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label text-dark mr-4" for="exampleCheck1">بر اساس استاد</label>
                 </div>
 
                 <div class="form-group form-check">
-                    <input value="{{ request.GET.course }}" name="course" type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <input name="course" type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label text-dark mr-4" for="exampleCheck1">بر اساس درس</label>
                 </div>
             </div>

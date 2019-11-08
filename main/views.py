@@ -134,21 +134,22 @@ def new_course(request):
     return render(request, "new-course.html")
 
 
-
 def courses(request):
     courses = Course.objects.all()
-    query = request.GET.get("search_query")
-    s1 = request.GET.get("course")
-    s2 = request.GET.get("teacher")
-    s3 = request.GET.get("department")
-    if query:
-        if s1 != "":
-            search_list = Course.objects.filter(Q(name__icontains=query))
-        elif s2 != "":
-            search_list = Course.objects.filter(Q(teacher__icontains=query))
-        elif s3 != "":
-            search_list = Course.objects.filter(Q(department__icontains=query))
-        else:
-            search_list = Course.objects.filter(Q(department__icontains=query))
-        return render(request, "courses.html", {"search_list": search_list })
+    if request.method == "POST":
+        query = request.POST.get("search_query")
+        s1 = request.POST.get("department")
+        s2 = request.POST.get("teacher")
+        s3 = request.POST.get("course")
+        print(s1,s2,s3)
+        if query:
+            if s1 is not None:
+                search_list = Course.objects.filter(Q(department__icontains=query))
+            elif s2 is not None:
+                search_list = Course.objects.filter(Q(teacher__icontains=query))
+            elif s3 is not None:
+                search_list = Course.objects.filter(Q(name__icontains=query))
+            else:
+                search_list = Course.objects.filter(Q(department__icontains=query))
+            return render(request, "courses.html", {"search_list": search_list })
     return render(request, "courses.html" , {"courses": courses})
