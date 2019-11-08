@@ -7,7 +7,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="container mt-5" id="all_courses">
+
 
 
     <!----- Search Daneshkade --->
@@ -58,6 +58,7 @@
     {% endfor %}
     </div>
 
+<div class="container mt-5" id="all_courses">
     <!----- End Search Daneshkade --->
     <div class="row">
         {% for course in courses %}
