@@ -40,6 +40,8 @@
 
         </form>
     </div>
+{% if search_list %}
+
 
     <div id="search_result" dir="rtl" class="bg-light card p-3 mt-4 mb-4">
     <h5 class="mb-4 text-primary text-center">
@@ -57,7 +59,7 @@
         <hr class="w-100 bg-dark">
     {% endfor %}
     </div>
-
+{% endif %}
 
     <!----- End Search Daneshkade --->
     <div class="row">
