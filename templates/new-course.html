@@ -15,6 +15,16 @@
     }
     </style>
     <div class="container mb-2 mt-5">
+    {% if error_time %}
+        <div class="container">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Oh Shit!!</strong> time format is incorrect!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        </div>
+     {% endif %}
         <div class="row mx-auto">
             <div class="col col-md-9 mx-auto">
                 <div class="card">

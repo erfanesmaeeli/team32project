@@ -1,8 +1,10 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
+from main.models import Course
+import time
 
 
 def home(request):
@@ -95,8 +97,39 @@ def panel(request):
 
 
 def new_course(request):
+    if request.method == "POST":
+        error_time = False
+        department = request.POST.get("department")
+        name = request.POST.get("name")
+        course_number = request.POST.get("course_number")
+        group_number = request.POST.get("group_number")
+        teacher = request.POST.get("teacher")
+        start_time = request.POST.get("start_time")
+        end_time = request.POST.get("end_time")
+        first_day = request.POST.get("first_day")
+        second_day = request.POST.get("second_day")
+
+        try:
+            time.strptime(start_time, '%H:%M')
+        except ValueError:
+            error_time = True
+            return render(request, "new-course.html", {"error_time": error_time})
+
+        try:
+            time.strptime(end_time, '%H:%M')
+        except ValueError:
+            error_time = True
+            return render(request, "new-course.html", {"error_time": error_time})
+
+        course = Course(department=department, name=name, course_number=course_number, group_number=group_number, teacher=teacher, start_time=start_time, end_time=end_time, first_day=first_day, second_day=second_day)
+        course.save()
+        return render(request, "panel.html")
+
     return render(request, "new-course.html")
 
 
+
 def courses(request):
-    return render(request, "courses.html")
+    courses = Course.objects.all()
+
+    return render(request, "courses.html", {"courses": courses})
