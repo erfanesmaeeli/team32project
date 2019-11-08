@@ -29,13 +29,14 @@
         <i class="fa fa-search"></i>
         نتایج جست و جو</h5>
     {% for post in search_list %}
-        <div class="{{ post.course_number }}_{{ post.group_number }}"></div>
+        <div class="{{ post.course_number }}_{{ post.group_number }}">
         <h6 class="meta mb-3"><i class="fa fa-sticky-note text-dark"></i>
  درس:
             {{ post.name }}</h6>
         <h6 class="meta"><i class="fa fa-user-secret text-dark"></i>
  استاد:
             {{ post.teacher }}</h6>
+        </div>
         <hr class="w-100 bg-dark">
     {% endfor %}
     </div>
