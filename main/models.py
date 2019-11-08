@@ -30,7 +30,7 @@ class Course(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='profile-image/', default='profile-image/avatar.jpg')
+    image = models.ImageField(upload_to='profile-image/')
 
     def __str__(self):
         return self.user.username
