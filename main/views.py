@@ -136,5 +136,7 @@ def new_course(request):
 
 def courses(request):
     courses = Course.objects.all()
-
+    query = request.GET.get("search_query")
+    if query:
+        hassan = Course.objects.filter(Q(group_number__icontains=query))
     return render(request, "courses.html", {"courses": courses})

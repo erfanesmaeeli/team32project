@@ -1,58 +1,85 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block link %}
-	<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 {% endblock %}
 {% block content %}
 
 {% if user.is_authenticated %}
-    <div class="container mt-5" id="all_courses">
-        <div class="row">
-            {% for course in courses %}
-                <div class="col-md-6 mb-5 {{course.course_number}}_{{course.group_number}}" dir="rtl">
-                    <div class="card bg-light mb-3">
-                        <div class="card-header text-center">
-                            <h4>{{ course.name }}</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
-                                <i class="fa fa-home"></i>
-                                {{course.department}}
-                            </div>
+<div class="container mt-5" id="all_courses">
 
-                            <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
-                                <i class="fa fa-calendar"></i>
 
-                                {{course.first_day}} و {{ course.second_day }}
-                            </div>
+    <!----- Search Daneshkade --->
 
-                            <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
-                                <i class="fa fa-clock-o"></i>
-                                {% if course.first_day == 0 %}
+    <div class="col-md-4">
+        <form action="" method="GET" id="search-form" dir="rtl" class="my-2">
+            <div class="input-group">
+                <input type="text" class="form-control" name="search_query" placeholder="جست و جو در دانشکده"
+                       value="{{ request.GET.search_query }}">
+                <div class="input-group-append">
+                    <button type="submit" name="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
 
-                                {% endif %}
-                                {{course.end_time}} تا {{ course.start_time }}
-                            </div>
+    {% for post in hasan %}
 
-                            <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
-                                <i class="fa fa-user-secret"></i>
-                                {{course.teacher}}
-                            </div>
-                        </div>
+    <span class="meta">Posted on: {{ post.name}}</span>
+
+
+{% endfor %}
+
+
+    <!----- End Search Daneshkade --->
+    <div class="row">
+
+
+        {% for course in courses %}
+        <div class="col-md-6 mb-5 {{course.course_number}}_{{course.group_number}}" dir="rtl">
+            <div class="card bg-light mb-3">
+                <div class="card-header text-center">
+                    <h4>{{ course.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
+                        <i class="fa fa-home"></i>
+                        {{course.department}}
+                    </div>
+
+                    <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
+                        <i class="fa fa-calendar"></i>
+
+                        {{course.first_day}} و {{ course.second_day }}
+                    </div>
+
+                    <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
+                        <i class="fa fa-clock-o"></i>
+                        {% if course.first_day == 0 %}
+
+                        {% endif %}
+                        {{course.end_time}} تا {{ course.start_time }}
+                    </div>
+
+                    <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1" dir="rtl">
+                        <i class="fa fa-user-secret"></i>
+                        {{course.teacher}}
                     </div>
                 </div>
-            {% endfor %}
+            </div>
         </div>
+        {% endfor %}
     </div>
+</div>
 {% else %}
-        <div class="container mt-5">
-        <div class="alert alert-warning text-center" role="alert">
-            login first !!
-        </div>
-        </div>
-    {% endif %}
+<div class="container mt-5">
+    <div class="alert alert-warning text-center" role="alert">
+        login first !!
+    </div>
+</div>
+{% endif %}
 
-    </body>
+</body>
 </html>
 {% endblock %}
