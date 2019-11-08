@@ -8,16 +8,15 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        {% if user.profile.image %}
-                              <img id="profile_image" src="{{ user.profile.image.url }}"/>
-                                {{ else }}
-                                 <img id="profile_image" src=""/>
-                                {% endif %}
     <div class="container emp-profile col-10 mx-auto mt-4">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-
+                            {% if user.profile.image %}
+                              <img id="profile_image" src="{{ user.profile.image.url }}"/>
+                                {% else %}
+                                 <img id="profile_image" src=""/>
+                                {% endif %}
                         </div>
                     </div>
                     <div class="col-md-6">
