@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
 {% block link %}
 
@@ -32,76 +31,34 @@
 </head>
 <body>
 {% block content %}
+    {% if user.is_authenticated %}
 <div class="limiter">
-		<div class="container-login100">
-            {% if error_pass %}
-        <div class="container" id="errors">
-            <div class="alert alert-danger alert-dismissible fade show text-right" role="alert" dir="rtl">
-              گذرواژه و تکرار گذرواژه یکسان نیستند
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-        </div>
-    {% elif error_user %}
-    <div class="container" id="errors">
-            <div class="alert alert-danger alert-dismissible fade show text-right" role="alert" dir="rtl">
-              نام کاربری شما در سیستم موجود است
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-        </div>
-     {% endif %}
+    <div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(/static/images/bg-01.jpg);">
 					<span class="login100-form-title-1">
-                        <i class="fa fa-user-plus"></i>
-						Sign UP
+                        <i class="fa fa-edit"></i>
+						Edit Profile
 					</span>
 				</div>
 
-				<form class="login100-form validate-form" id="register_form" action="/signup/" method="post">
+				<form class="login100-form validate-form" id="setting_form" action="/profile-edit/" method="post">
                     {% csrf_token %}
-					<div class="wrap-input100 validate-input m-b-26" data-validate="First Name is required">
+					<div class="wrap-input100  m-b-26">
 						<span class="label-input100">First name</span>
 						<input name="first_name" class="input100" type="text" placeholder="Enter first name">
 						<span class="focus-input100"></span>
 					</div>
 
-                    <div class="wrap-input100 validate-input m-b-26" data-validate="Last Name is required">
+                   <div class="wrap-input100  m-b-26">
 						<span class="label-input100">Last name</span>
 						<input name="last_name" class="input100" type="text" placeholder="Enter last name">
 						<span class="focus-input100"></span>
 					</div>
 
-                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-						<span class="label-input100">Username</span>
-						<input name="username" class="input100" type="text" placeholder="Enter username">
-						<span class="focus-input100"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
-						<span class="label-input100">Email</span>
-						<input name="email" class="input100" type="email" placeholder="Enter email">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="password1" placeholder="Enter password">
-						<span class="focus-input100"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input m-b-18" data-validate = "Password repeat is required">
-						<span class="label-input100">Confirm Password</span>
-						<input class="input100" type="password" name="password2" placeholder="Enter password again">
-						<span class="focus-input100"></span>
-					</div>
-
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit" name="submit">
-							Sign Up
+							Save
 						</button>
 					</div>
 				</form>
@@ -125,8 +82,15 @@
 	<script src="/static/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="/static/js/main.js"></script>
+{% else%}
+        <div class="container mt-5">
+        <div class="alert alert-warning text-center" role="alert">
+            login first !!
+        </div>
+        </div>
+    {% endif %}
 
-</body>
+    </body>
 </html>
 {% endblock %}
 

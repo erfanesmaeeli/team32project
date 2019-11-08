@@ -44,7 +44,7 @@ def contact(request):
                 title,
                 f"{text}  {email}",
                 'ES Band Webelopers' + '<webelopers.esband@gmail.com>',
-                ["erfan.es00749@gmail.com"],
+                ["webe19lopers@gmail.com"],
             )
         my_email.send()
         return render(request, "contact-done.html")
@@ -75,3 +75,28 @@ def logout_(request):
 
 def profile(request):
     return render(request, "profile.html")
+
+
+def profile_edit(request):
+    if request.method == 'POST':
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+
+        if first_name != "":
+            request.user.first_name = first_name
+        if last_name != "":
+            request.user.last_name = last_name
+        return render(request, "profile.html")
+    return render(request, "profile-edit.html")
+
+
+def panel(request):
+    return render(request, "panel.html")
+
+
+def new_course(request):
+    return render(request, "new-course.html")
+
+
+def courses(request):
+    return render(request, "courses.html")

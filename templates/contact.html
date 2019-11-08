@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
 {% block content %}
     <style>
-            .container{
-                max-width: 940px;
+        .container{
+            max-width: 940px;
             }
+    .form-control:focus{
+        border-color: #2e3133;
+        box-shadow: 1px 1px 1px  #2e3133 !important;
+    }
     </style>
     <div class="container mb-2 mt-5">
         <div class="row mx-auto">
             <div class="col">
                 <div class="card">
-                    <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> Contact us.
+                    <div class="card-header bg-secondary text-white text-center"><i class="fa fa-envelope"></i> Contact Us
                     </div>
                     <div class="card-body">
                         <form id="contact_us_form" action="/contact/" method="post">
@@ -24,10 +33,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea class="form-control" id="message" name="text" rows="6" minlength="10" maxlength="250" required></textarea>
+                                <textarea class="form-control" id="message" name="text" rows="6" minlength="10" maxlength="250" placeholder="Enter Message between 10 to 250 character" required></textarea>
                             </div>
-                            <div class="mx-auto">
-                            <button type="submit" class="btn btn-primary text-right">Submit</button></div>
+                            <div class="d-flex">
+                            <button type="submit" class="btn btn-outline-success text-center mx-auto" style="width: 150px;">Send</button></div>
                         </form>
                     </div>
                 </div>

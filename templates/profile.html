@@ -18,7 +18,7 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                 <div class="mb-5 mt-4">
-                                    <h5 class="d-inline">first name: </h5>
+                                    <h5 class="d-inline"> first name: </h5>
                                     <span id="text_first_name">
                                         {{ request.user.first_name }}
                                     </span>
@@ -39,8 +39,8 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                    <div class="col-md-6 mx-auto">
+                        <a id="setting" href="/profile-edit/" class="btn btn-warning">Edit Profile</a>
                     </div>
                 </div>
             </form>

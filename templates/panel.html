@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+	<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <div class="p-25 d-flex mt-5">
+    <a href="/new-course/" id="make_new_course" class="btn btn-success mx-auto">
+        <i class="fa fa-plus"></i>
+        ساختن واحد جدید
+    </a>
+    </div>
+
+    <div class="p-25 d-flex mt-5">
+    <a href="/courses/" id="courses" class="btn btn-primary mx-auto">
+        <i class="fa fa-eye"></i>
+        مشاهده واحد ها
+    </a>
+    </div>
+{% else%}
+        <div class="container mt-5">
+        <div class="alert alert-warning text-center" role="alert">
+            login first !!
+        </div>
+        </div>
+    {% endif %}
+
+    </body>
+</html>
+{% endblock %}

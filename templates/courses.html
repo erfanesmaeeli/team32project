@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+	<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <div class="container mt-5" id="all_courses">
+        <div class="row">
+{#            {{ course number_group number }}#}
+            <div class="col-md-6 mb-5">
+                <div class="card bg-light mb-3">
+                    <div class="card-header text-center">
+                        <h4>ساختمان های داده</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1">
+                            <i class="fa fa-home"></i>
+                            course name
+                        </div>
+
+                        <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1">
+                            <i class="fa fa-calendar"></i>
+                            course days
+                        </div>
+
+                        <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1">
+                            <i class="fa fa-clock-o"></i>
+                            start time - end time
+                        </div>
+
+                        <div class="btn btn-light bg-secondary text-white pb-2 mb-2 mr-1">
+                            <i class="fa fa-user-secret"></i>
+                            teacher
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else%}
+        <div class="container mt-5">
+        <div class="alert alert-warning text-center" role="alert">
+            login first !!
+        </div>
+        </div>
+    {% endif %}
+
+    </body>
+</html>
+{% endblock %}
