@@ -7,12 +7,14 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <div class="p-25 d-flex mt-5">
-    <a href="/new-course/" id="make_new_course" class="btn btn-success mx-auto">
-        <i class="fa fa-plus"></i>
-        ساختن واحد جدید
-    </a>
-    </div>
+    {% if user.is_superuser  %}
+        <div class="p-25 d-flex mt-5">
+            <a href="/new-course/" id="make_new_course" class="btn btn-success mx-auto">
+                <i class="fa fa-plus"></i>
+                ساختن واحد جدید
+            </a>
+        </div>
+    {% endif %}
 
     <div class="p-25 d-flex mt-5">
     <a href="/courses/" id="courses" class="btn btn-primary mx-auto">
