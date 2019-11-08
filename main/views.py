@@ -138,7 +138,17 @@ def new_course(request):
 def courses(request):
     courses = Course.objects.all()
     query = request.GET.get("search_query")
+    s1 = request.GET.get("course")
+    s2 = request.GET.get("teacher")
+    s3 = request.GET.get("department")
     if query:
-        search_list = Course.objects.filter(Q(department__icontains=query))
+        if s1 != "":
+            search_list = Course.objects.filter(Q(name__icontains=query))
+        elif s2 != "":
+            search_list = Course.objects.filter(Q(teacher__icontains=query))
+        elif s3 != "":
+            search_list = Course.objects.filter(Q(department__icontains=query))
+        else:
+            search_list = Course.objects.filter(Q(department__icontains=query))
         return render(request, "courses.html", {"search_list": search_list })
     return render(request, "courses.html" , {"courses": courses})

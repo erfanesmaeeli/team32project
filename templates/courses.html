@@ -13,16 +13,36 @@
     <!----- Search Daneshkade --->
 
     <div class="col-md-4 mx-auto mb-5">
-        <form action="" method="GET" id="search_form" dir="rtl" class="my-2">
-            <div class="input-group">
+        <form action="/courses/" method="GET" id="search_form" dir="rtl" class="my-2">
+            <div class="form-group">
                 <input type="text" class="form-control" name="search_query" placeholder="جست و جو در دانشکده"
                        value="{{ request.GET.search_query }}">
-                <div class="input-group-append">
-                    <button type="submit" name="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+            </div>
+            <div class="bg-light pt-2 pb-1 pr-3 pl-3 rounded mb-3">
+                <div class="form-group form-check">
+                    <input value="{{ request.GET.department }}" name="department" type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label text-dark mr-4" for="exampleCheck1">بر اساس دانشکده</label>
+                </div>
+                <div class="form-group form-check">
+                    <input value="{{ request.GET.teacher }}" name="teacher" type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label text-dark mr-4" for="exampleCheck1">بر اساس استاد</label>
+                </div>
+
+                <div class="form-group form-check">
+                    <input value="{{ request.GET.course }}" name="course" type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label text-dark mr-4" for="exampleCheck1">بر اساس درس</label>
                 </div>
             </div>
+
+            <div class="input-group-append d-inline d-flex">
+                <button type="submit" name="submit" class="btn btn-success ml-auto " style="width: 90px"><i class="fa fa-search"></i></button>
+            </div>
+
         </form>
     </div>
+
+{% if search_list %}
+
 
     <div id="search_result" dir="rtl" class="bg-light card p-3 mt-4 mb-4">
     <h5 class="mb-4 text-primary text-center">
@@ -40,6 +60,7 @@
         <hr class="w-100 bg-dark">
     {% endfor %}
     </div>
+    {% endif %}
 
 
     <!----- End Search Daneshkade --->
@@ -87,7 +108,6 @@
     </div>
 </div>
 {% endif %}
-
 </body>
 </html>
 {% endblock %}
